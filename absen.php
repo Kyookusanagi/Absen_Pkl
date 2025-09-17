@@ -1,22 +1,6 @@
 <?php
-// Koneksi ke database
-$conn = new mysqli("localhost", "root", "", "absensi_pkl");
-
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $nama = $conn->real_escape_string($_POST["nama"]);
-    $sekolah = $conn->real_escape_string($_POST["sekolah"]);
-    $status = $conn->real_escape_string($_POST["status"]);
-
-    $sql = "INSERT INTO absen (nama, sekolah, status) VALUES ('$nama', '$sekolah', '$status')";
-    if ($conn->query($sql) === TRUE) {
-        header("Location: absen.php?success=1");
-        exit();
-    }
-}
-
-$success = isset($_GET['success']) && $_GET['success'] == '1';
+require_once "koneksi.php";
 ?>
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -27,7 +11,9 @@ $success = isset($_GET['success']) && $_GET['success'] == '1';
 <body>
     <div class="container">
         <h2>Form Absen Anak PKL</h2>
-        <div class="notif" style="display:<?= $success ? 'block' : 'none' ?>;">Absen berhasil disimpan!</div>
+        <?php if ($success): ?>
+            <div class="notif">Absen berhasil disimpan!</div>
+        <?php endif; ?>
         <form method="POST" autocomplete="off">
             <label for="nama">Nama</label>
             <input type="text" id="nama" name="nama" required>
@@ -44,7 +30,7 @@ $success = isset($_GET['success']) && $_GET['success'] == '1';
             </select>
 
             <button type="submit" class="btn">Kirim</button>
-             <div style="margin-top:18px; text-align:center;">
+            <div style="margin-top:18px; text-align:center;">
                 <a href="login.php" class="btn" style="background:green; color:white; text-decoration:none; display:inline-block; width:auto; padding:10px 24px;">Login sebagai Admin</a>
             </div>
         </form>

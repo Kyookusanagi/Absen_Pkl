@@ -31,31 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <title>Login Admin PKL</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .login-container {
-            max-width: 350px;
-            margin: 60px auto;
-            background: #fff;
-            padding: 32px 24px;
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-        }
-        h2 {
-            text-align: center;
-            color: #2d7cff;
-            margin-bottom: 24px;
-        }
-        .error {
-            background: #f8d7da;
-            color: #721c24;
-            border: 1px solid #f5c6cb;
-            padding: 10px;
-            border-radius: 6px;
-            margin-bottom: 16px;
-            text-align: center;
-            font-size: 15px;
-        }
-    </style>
 </head>
 <body>
     <div class="login-container">
@@ -69,7 +44,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>
-
+             <div style="margin: 12px 0; text-align: center;">
+                <a href="absen.php" style="color: #2d7cff; ">Kembali ke Absen</a>
+            </div>
             <button type="submit" class="btn">Login</button>
         </form>
     </div>
